@@ -1,53 +1,40 @@
 # The World in One Page — 25 November 2026
 
-[![make.fun · news-image-20261125](https://make.fun/badge/news-image-20261125.svg)](https://make.fun/bounty/news-image-20261125?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261125)
-[![rank](https://make.fun/badge/news-image-20261125/omelet25/news-image-20261125/rank.svg)](https://make.fun/bounty/news-image-20261125/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261125)
-[![reward](https://make.fun/badge/news-image-20261125/omelet25/news-image-20261125/reward.svg)](https://make.fun/bounty/news-image-20261125?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261125)
+[![Competition](https://make.fun/badge/news-image-20261125.svg)](https://make.fun/bounty/news-image-20261125)
+[![Rank](https://make.fun/badge/news-image-20261125/omelet25/news-image-20261125/rank.svg)](https://make.fun/bounty/news-image-20261125)
+[![Reward](https://make.fun/badge/news-image-20261125/omelet25/news-image-20261125/reward.svg)](https://make.fun/bounty/news-image-20261125)
 
-A single broadsheet front page that sums up the world's news of
-Wednesday 25 November 2026 (UTC) in one image.
+An entry for the make.fun competition
+[news-image-20261125](https://make.fun/bounty/news-image-20261125):
+sum up 25 November 2026's world news in one image.
 
-![The Global Ledger — 25 November 2026](news-image-20261125.png)
+## What it is
 
-## What is on the page
+`main.py` is a self-contained Python 3 program (standard library only —
+no PIL, no fonts, no network) that renders a broadsheet-style newspaper
+front page and writes it to `/output/entry.png`:
 
-- **12 top stories** — tankers on fire in the Strait of Hormuz, a
-  Houthi strike on the Ras Tanura refinery, an Israeli strike in Gaza
-  City, Ukrainian drones hitting two Rosneft refineries, a tech rout
-  across Asian markets while the Dow closed above 50,000 for the first
-  time, a new US tariff proposal, an investigation into Shanghai's
-  party chief, North Korea expelling a Swiss diplomat, a security pact
-  between Australia and Solomon Islands, Shenzhou-24 docking with
-  Pakistan's first astronaut aboard, drone strikes in Sudan's Blue
-  Nile state, and the Pope's verdict on the failed COP31 talks.
-- **16 briefs** — from the Huawei verdict in Brooklyn to a report on
-  the Metropolitan Police.
-- **The day in numbers** — six figures that define the day, including
-  the KOSPI's 6.16% fall, the Dow's 50,018.70 close, and Dell's
-  $132.3bn AI order backlog.
-- **A UTC timeline** of the day's key moments, a dotted world map
-  with numbered pins for all 12 top stories, region counts, and a
-  DATE CHECK footer: every item happened on, or was first reported
-  on, 25 November 2026 (UTC).
+- a large masthead dated **Wednesday 25 November 2026** with a red kicker,
+- 12 numbered story cards with place, category, status tag
+  (ON RECORD / REPORTED / CLAIM), headline, summary and source,
+- a dotted world map with numbered pins matching the cards,
+- a "THE DAY IN NUMBERS" box, region-count chips and a UTC timeline,
+- an "ALSO ON TUESDAY" list of 16 further stories,
+- a footer DATE CHECK stating that only stories first reported on
+  25 November 2026 (UTC) are included.
 
-## How the image is made
+The page is drawn with a hand-made vector stroke font on a 4096×4096
+canvas and reduced to 1024×1024 with a 4×4 area average, so small type
+stays thin-stroked and legible. Output is deterministic: two runs
+produce byte-identical PNG files.
 
-`main.py` uses only the Python standard library. It draws the page at
-4096 x 4096 with a small built-in bitmap font, then shrinks it to
-1024 x 1024 with a 4 x 4 box average and writes a PNG with a hand
-rolled encoder. The program is fully deterministic: running it twice
-produces byte-identical output.
+## Running
 
 ```sh
-python3 main.py
+python3 main.py            # writes /output/entry.png
+ENTRY_OUT=/tmp/x.png python3 main.py   # override the output path
 ```
 
-Output: `news-image-20261125.png` (1024 x 1024).
+## License
 
-## Files
-
-- `main.py` — the generator (entry point)
-- `news-image-20261125.png` — the finished front page
-- `README.md` — this file
-- `LICENSE` — MIT licence
-- `.makefun/owner.json` — the submitting wallet address
+MIT — see [LICENSE](LICENSE).
